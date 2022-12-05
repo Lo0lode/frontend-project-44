@@ -2,4 +2,3 @@
 import greting from '../src/cli.js';
 
 greting();
-    
