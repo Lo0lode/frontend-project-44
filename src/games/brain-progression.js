@@ -1,40 +1,24 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
-
-const Progresia = () => {
-  console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}`);
-  console.log('What number is missing in the progression?');
-  let i = 0;
-  let i2 = 0;
-  let final = 0;
-  let result = [];
-  const shadow = '..';
-  while (i < 3) {
-    const index = Math.floor(Math.random() * 10) + 5;
-    const random = Math.floor(Math.random() * 5) + 1;
-    const start = Math.floor(Math.random() * 10) + 5;
-    while (i2 < index) {
-      (result.push(start + (index * (i2 + 1))));
-      i2 += 1;
-    }
-    i2 = 0;
-    final = result[random];
-    result[random] = shadow;
-    console.log(`Question:${result.join(' ')} `);
-    result = [];
-    const answer = readlineSync.question('Your answer: ');
-    if (Number(answer) !== final) {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${final}'. \n Let's try again, ${name}`);
-      return;
-    }
-
-    i += 1;
-    console.log('Correct!');
+import Game from '../index.js';
+import randomNumber from '../randomNumber.js';
+const length = 10
+const progression = 10
+const rules = 'What number is missing in the progression?';
+const questionandAnswer=()=>{
+  const firstNumber = randomNumber()
+  const progres = randomNumber(1,progression)
+  const skip = randomNumber(0,length)
+  const progresia = []
+  for (let i = 0; i < length; i += 1) {
+    progresia.push(firstNumber + progres * i);
   }
-  if (i === 3) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  const answer =  progresia[skip]
+  progresia[skip] = '..'
+  const question =  progresia.join(' ')
+  return [question,String(answer)]
 };
-export default Progresia;
+const GameProgression = () => {
+  Game(rules, questionandAnswer);
+};
+export default GameProgression

@@ -1,37 +1,30 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
-
-const Nod = (minnumber = 3, maxnumber = 10) => {
-  console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!`);
-  console.log('Find the greatest common divisor of given numbers.');
-  let i = 0;
-  let result = 0;
-  while (i < 3) {
-    let number = Math.floor((minnumber + Math.random()) * (maxnumber + 1 - minnumber));
-    let number2 = Math.floor((minnumber + Math.random()) * (maxnumber + 1 - minnumber));
-    console.log(`Question: ${number} ${number2}`);
-    const answer = readlineSync.question('Your answer: ');
-    while (number !== number2) {
-      if (number === number2) {
-        console.log(number);
-      }
-      if (number > number2) {
-        number -= number2;
-      } else {
-        number2 -= number;
-      }result = number;
+import Game from '../index.js';
+import randomNumber from '../randomNumber.js';
+const rules ='Find the greatest common divisor of given numbers.'
+const CorrectAnswer=(number1,number2)=>{
+  let answer = 1
+  while (number1 !== number2) {
+    if (number1 === number2) {
+      console.log(number1);
     }
-    if (Number(answer) !== result) {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'. \n Let's try again, ${name}!`);
-      return;
-    }
-    i += 1;
-    console.log('Correct!');
+    if (number1 > number2) {
+      number1 -= number2;
+    } else {
+      number2 -= number1;
+    }answer = number1;
   }
-  if (i === 3) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  return answer
+}
+const questionandAnswer=()=>{
+  const number1 = randomNumber(1)
+  const number2 = randomNumber(1)
+  const question = `${number1} ${number2}`
+  const answer = CorrectAnswer(number1,number2)
+  return [question, String(answer)];
+}
+const GameGCD = () => {
+  Game(rules, questionandAnswer);
 };
-export default Nod;
+export default GameGCD
