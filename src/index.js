@@ -9,7 +9,7 @@ const Game =(rules,questionandAnswer)=>{
   let correctAnswersCount = 0;
   while(correctAnswersCount < round){
     const [question,CorrectAnswer] = questionandAnswer()
-    console.log(`Question:  ${question}`)
+    console.log(`Question: ${question}`)
     const userAnswer = readlineSync.question('Your answer: ');
     if (CorrectAnswer === userAnswer) {
         console.log('Correct!');
