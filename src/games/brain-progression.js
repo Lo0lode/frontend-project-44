@@ -4,6 +4,7 @@ import randomNumber from '../randomNumber.js';
 
 const length = 10;
 const progression = 10;
+
 const rules = 'What number is missing in the progression?';
 const questionandAnswer = () => {
   const firstNumber = randomNumber();
