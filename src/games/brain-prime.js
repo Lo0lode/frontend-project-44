@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
 import Game from '../index.js';
 import randomNumber from '../randomNumber.js';
+
 const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const Prime = (num) => {
   if (num <= 1) return false;
@@ -10,12 +10,12 @@ const Prime = (num) => {
   }
   return true;
 };
-const questionandAnswer=()=>{
-  const question= randomNumber()
+const questionandAnswer = () => {
+  const question = randomNumber();
   const answer = Prime(question) ? 'yes' : 'no';
-  return [question,answer]
-}
+  return [question, answer];
+};
 const GamePrime = () => {
   Game(rules, questionandAnswer);
 };
-export default GamePrime
+export default GamePrime;
