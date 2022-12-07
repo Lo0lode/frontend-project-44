@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import Game from '../index.js';
 import randomNumber from '../randomNumber.js';
+
 const rules = 'What is the result of the expression?';
 const symvol = ['+', '-', '*'];
 const CorrectAnswer = (number1, number2, randomsymvol) => {

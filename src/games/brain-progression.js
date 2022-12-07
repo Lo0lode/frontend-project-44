@@ -4,9 +4,7 @@ import randomNumber from '../randomNumber.js';
 
 const lengthProgression = 10;
 const maxDiffProgression = 10;
-
 const rule = 'What number is missing in the progression?';
-
 const questionandAnswer = () => {
   const firstNum = randomNumber();
   const diffProgression = randomNumber(1, maxDiffProgression);
@@ -20,10 +18,7 @@ const questionandAnswer = () => {
   const question = progression.join(' ');
   return [question, String(answer)];
 };
-
 const initGameProgression = () => {
   Game(rule, questionandAnswer);
 };
-
 export default initGameProgression;
-
