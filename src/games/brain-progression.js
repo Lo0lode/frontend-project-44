@@ -2,24 +2,28 @@
 import Game from '../index.js';
 import randomNumber from '../randomNumber.js';
 
-const length = 10;
-const progression = 10;
+const lengthProgression = 10;
+const maxDiffProgression = 10;
 
-const rules = 'What number is missing in the progression?';
+const rule = 'What number is missing in the progression?';
+
 const questionandAnswer = () => {
-  const firstNumber = randomNumber();
-  const progres = randomNumber(1, progression);
-  const skip = randomNumber(0, length);
-  const progresia = [];
-  for (let i = 0; i < length; i += 1) {
-    progresia.push(firstNumber + progres * i);
+  const firstNum = randomNumber();
+  const diffProgression = randomNumber(1, maxDiffProgression);
+  const skip = randomNumber(0, lengthProgression);
+  const progression = [];
+  for (let i = 0; i < lengthProgression; i += 1) {
+    progression.push(firstNum + diffProgression * i);
   }
-  const answer = progresia[skip];
-  progresia[skip] = '..';
-  const question = progresia.join(' ');
+  const answer = progression[skip];
+  progression[skip] = '..';
+  const question = progression.join(' ');
   return [question, String(answer)];
 };
-const GameProgression = () => {
-  Game(rules, questionandAnswer);
+
+const initGameProgression = () => {
+  Game(rule, questionandAnswer);
 };
-export default GameProgression;
+
+export default initGameProgression;
+
